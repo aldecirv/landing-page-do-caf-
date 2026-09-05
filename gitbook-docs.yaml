@@ -9,4 +9,4 @@ site:
       path: icafe-landing
       default: true
       content:
-        directory: /
+        directory: ./
