@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" role="img">
+  <title>Icaf&#233; - caf&#233; natural da ro&#231;a</title>
+  <rect x="2" y="8" width="64" height="64" rx="16" fill="#6f3f17"/>
+  <ellipse cx="34" cy="40" rx="21" ry="12" transform="rotate(-20 34 40)" fill="#f6e7cd"/>
+  <path d="M34 26 C32 34 32 46 34 54" stroke="#6f3f17" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="82" y="55" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="46" fill="#4f2c0d">Icaf&#233;</text>
+</svg>

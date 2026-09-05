@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="t d">
+  <title id="t">Icaf&#233; Org&#226;nico 500 g</title>
+  <desc id="d">Cultivo natural</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8ecd6"/>
+      <stop offset="0.55" stop-color="#eed6ab"/>
+      <stop offset="1" stop-color="#d4a466"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#g)"/>
+  <circle cx="516" cy="84" r="204" fill="#ffffff" opacity="0.22"/>
+  <circle cx="60" cy="552" r="156" fill="#ffffff" opacity="0.15"/>
+  <text x="300" y="222" font-family="Segoe UI Emoji, Segoe UI, sans-serif" font-size="132" text-anchor="middle">&#127793;</text>
+  <text x="300" y="372" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="32" fill="#4f2c0d" text-anchor="middle">Icaf&#233; Org&#226;nico 500 g</text>
+  <text x="300" y="456" font-family="'Segoe UI', Arial, sans-serif" font-size="27" fill="#7a5a33" text-anchor="middle">Cultivo natural</text>
+</svg>

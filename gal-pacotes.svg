@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="t d">
+  <title id="t">Pacotes Icaf&#233;</title>
+  <desc id="d">Do moinho para casa</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8ecd6"/>
+      <stop offset="0.55" stop-color="#eed6ab"/>
+      <stop offset="1" stop-color="#d4a466"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#g)"/>
+  <circle cx="550" cy="67" r="163" fill="#ffffff" opacity="0.22"/>
+  <circle cx="64" cy="441" r="124" fill="#ffffff" opacity="0.15"/>
+  <text x="320" y="177" font-family="Segoe UI Emoji, Segoe UI, sans-serif" font-size="105" text-anchor="middle">&#128230;</text>
+  <text x="320" y="297" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="43" fill="#4f2c0d" text-anchor="middle">Pacotes Icaf&#233;</text>
+  <text x="320" y="364" font-family="'Segoe UI', Arial, sans-serif" font-size="21" fill="#7a5a33" text-anchor="middle">Do moinho para casa</text>
+</svg>
