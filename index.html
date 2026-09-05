@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  LANDING PAGE — ICAFÉ (café natural da roça)
+  ============================================================================
+  COMO EDITAR O CONTEÚDO (textos, imagens, preços e contatos):
+
+  1. TEXTOS  -> Troque os textos entre as tags <h1>, <h2>, <h3>, <p>, <li>.
+                 Cada seção tem um comentário acima indicando o que é.
+  2. IMAGENS -> Coloque suas fotos na pasta /img (substitua os .svg de exemplo)
+                 e atualize o atributo "src" e o texto alternativo "alt" de
+                 cada <img>. Mantenha o "alt" curto e descritivo.
+  3. PREÇOS  -> Procure por  class="preco" e edite o valor (ex.: R$ 50,00).
+  4. CONTATO -> No formulário, em "info-contato" e no <footer> troque:
+                 - e-mail (mailto:) -> aldecir287@gmail.com
+                 - telefone (tel:)  -> +554799395678
+                 - redes sociais    -> troque os href="#" pelos seus links.
+  5. REDES SOCIAIS -> procure por <nav aria-label="Redes sociais"> e edite os
+                 links "#".
+
+  Observação: esta página NÃO usa JavaScript — apenas HTML e CSS.
+  A validação do formulário é feita pelos recursos nativos do navegador
+  (required, type="email", type="tel"). Para receber as mensagens, defina o
+  atributo action="SEU-SERVIDOR" no <form> abaixo (ex.: Formspree, Getform).
+  ============================================================================
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Icafé é o café 100% natural torrado na roça. Energia e sabor de verdade para o seu dia. Peça o seu agora.">
+  <meta name="theme-color" content="#6f3f17">
+  <title>Icafé — Café natural da roça | Compre agora</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Acessibilidade: link "Pular para o conteúdo principal" — aparece
+       primeiro na tabulação e só fica visível quando recebe o foco. -->
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- ======================================================================
+       <header> — cabeçalho da página com marca e navegação principal.
+       ====================================================================== -->
+  <header class="cabecalho">
+    <div class="container cabecalho-inner">
+
+      <!-- Marca (logo + nome). O <img> recebe alt descritivo da logo. -->
+      <a class="marca" href="#inicio">
+        <img class="marca-logo" src="img/logo-icafe.svg" alt="Logo do Icafé, café natural da roça" width="160" height="48">
+      </a>
+
+      <!-- <nav> + aria-label identificam a navegação principal.
+           Sem JavaScript o menu fica sempre visível (no celular ele vira
+           uma lista vertical empilhada, definida no styles.css). -->
+      <nav class="navegacao" aria-label="Menu principal">
+        <ul class="navegacao-lista">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- <main> envolve todo o conteúdo principal — alvo do "pular para o
+       conteúdo". Apenas UM <h1> existe em toda a página (no hero). -->
+  <main id="conteudo">
+
+    <!-- ====================================================================
+         Seção HERO — destaque inicial.
+         ==================================================================== -->
+    <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+      <div class="container hero-inner">
+
+        <div class="hero-texto">
+          <!-- ÚNICO <h1> da página. -->
+          <h1 id="titulo-hero">Icafé — o café natural da roça para o seu dia a dia</h1>
+          <p class="hero-descricao">
+            Café 100% natural, torrado na medida certa, direto da roça para a sua mesa.
+            Energia, saúde e muito sabor — sem misturas artificiais.
+          </p>
+          <p class="hero-acoes">
+            <!-- Chamada para ação principal (visualmente destacada). -->
+            <a class="botao botao-primario" href="#contato">Comprar agora</a>
+            <!-- Ação secundária. -->
+            <a class="botao botao-secundario" href="#produtos">Conhecer os produtos</a>
+          </p>
+          <p class="hero-selo" aria-hidden="true">Torrado na roça &bull; 100% natural &bull; Sabor de verdade</p>
+        </div>
+
+        <!-- Imagem ilustrativa do hero. O alt descreve a imagem sem repetir
+             informações que já estão no texto da página. -->
+        <figure class="hero-figura">
+          <img src="img/hero-cafe.svg" alt="Xícara de café Icafé fumegante sobre mesa de madeira com grãos torrados ao redor" width="640" height="560">
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Seção BENEFÍCIOS.
+         ==================================================================== -->
+    <section class="secao beneficios" id="beneficios" aria-labelledby="titulo-beneficios">
+      <div class="container">
+        <h2 id="titulo-beneficios">Por que escolher o Icafé?</h2>
+        <p class="secao-intro">Um café que cuida de você do primeiro gole ao último.</p>
+
+        <!-- <ul> semântico: cada benefício é um item de lista com <h3>. -->
+        <ul class="grade beneficios-grade">
+          <li class="beneficio-item">
+            <span class="beneficio-icone" aria-hidden="true">&#9889;</span>
+            <h3>Energia para o seu dia</h3>
+            <p>
+              A cafeína natural do Icafé ajuda você a acordar e manter o foco,
+              do jeito que a natureza fez.
+            </p>
+          </li>
+          <li class="beneficio-item">
+            <span class="beneficio-icone" aria-hidden="true">&#127807;</span>
+            <h3>Faz bem para a saúde</h3>
+            <p>
+              Rico em antioxidantes naturais, é uma escolha saborosa para quem
+              cuida da alimentação todos os dias.
+            </p>
+          </li>
+          <li class="beneficio-item">
+            <span class="beneficio-icone" aria-hidden="true">&#9878;</span>
+            <h3>Aliado da boa forma</h3>
+            <p>
+              Combinado com alimentação equilibrada e exercícios, o café ajuda a
+              acelerar o metabolismo e dá disposição para se movimentar mais.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Seção PRODUTOS — exatamente 6 cards.
+         ==================================================================== -->
+    <section class="secao produtos" id="produtos" aria-labelledby="titulo-produtos">
+      <div class="container">
+        <h2 id="titulo-produtos">Conheça nossos produtos</h2>
+        <p class="secao-intro">Escolha o Icafé ideal para o seu momento. Todos saem torrados e fresquinhos da roça.</p>
+
+        <!-- <ul> de cards; cada card é um <li> com <article> (conteúdo
+             independente e reutilizável). -->
+        <ul class="grade grade-produtos">
+
+          <!-- Card 1 -->
+          <li>
+            <article class="card-produto">
+              <img src="img/prod-tradicional-500g.svg" alt="Pacote de café Icafé Tradicional moído, 500 gramas" width="600" height="600" loading="lazy">
+              <div class="card-produto-corpo">
+                <h3>Icafé Tradicional 500 g</h3>
+                <p class="card-produto-desc">Torrado e moído na medida certa. Aroma marcante e sabor equilibrado para o dia a dia.</p>
+                <p class="card-produto-beneficio">Benefício principal: energia natural para começar bem o dia.</p>
+                <p class="preco">R$ 50,00</p>
+                <!-- Botão de pedido: leva o visitante até a seção de contato. -->
+                <a class="botao botao-primario" href="#contato">Fazer pedido</a>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 2 -->
+          <li>
+            <article class="card-produto">
+              <img src="img/prod-graos-1kg.svg" alt="Saco de grãos inteiros de café Icafé, 1 quilo" width="600" height="600" loading="lazy">
+              <div class="card-produto-corpo">
+                <h3>Icafé em Grãos 1 kg</h3>
+                <p class="card-produto-desc">Grãos inteiros torrados para você moer na hora e aproveitar todo o aroma.</p>
+                <p class="card-produto-beneficio">Benefício principal: frescor máximo, do grão à xícara.</p>
+                <p class="preco">R$ 85,00</p>
+                <a class="botao botao-primario" href="#contato">Fazer pedido</a>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 3 -->
+          <li>
+            <article class="card-produto">
+              <img src="img/prod-extra-forte-500g.svg" alt="Pacote de café Icafé Extra Forte moído, 500 gramas" width="600" height="600" loading="lazy">
+              <div class="card-produto-corpo">
+                <h3>Icafé Extra Forte 500 g</h3>
+                <p class="card-produto-desc">Torra mais escura e sabor intenso, para quem prefere café encorpado.</p>
+                <p class="card-produto-beneficio">Benefício principal: mais intensidade e personalidade em cada gole.</p>
+                <p class="preco">R$ 55,00</p>
+                <a class="botao botao-primario" href="#contato">Fazer pedido</a>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 4 -->
+          <li>
+            <article class="card-produto">
+              <img src="img/prod-descafeinado-250g.svg" alt="Pacote de café Icafé Descafeinado moído, 250 gramas" width="600" height="600" loading="lazy">
+              <div class="card-produto-corpo">
+                <h3>Icafé Descafeinado 250 g</h3>
+                <p class="card-produto-desc">Todo o sabor da roça, sem cafeína. Perfeito para o fim do dia.</p>
+                <p class="card-produto-beneficio">Benefício principal: sabor para curtir a qualquer hora.</p>
+                <p class="preco">R$ 42,00</p>
+                <a class="botao botao-primario" href="#contato">Fazer pedido</a>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 5 -->
+          <li>
+            <article class="card-produto">
+              <img src="img/prod-organico-500g.svg" alt="Pacote de café Icafé Orgânico moído, 500 gramas" width="600" height="600" loading="lazy">
+              <div class="card-produto-corpo">
+                <h3>Icafé Orgânico 500 g</h3>
+                <p class="card-produto-desc">Cultivado em fazenda familiar, sem aditivos nem conservantes.</p>
+                <p class="card-produto-beneficio">Benefício principal: pureza e naturalidade em cada xícara.</p>
+                <p class="preco">R$ 65,00</p>
+                <a class="botao botao-primario" href="#contato">Fazer pedido</a>
+              </div>
+            </article>
+          </li>
+
+          <!-- Card 6 -->
+          <li>
+            <article class="card-produto">
+              <img src="img/prod-combo-3x500g.svg" alt="Três pacotes de café Icafé Tradicional em combo" width="600" height="600" loading="lazy">
+              <div class="card-produto-corpo">
+                <h3>Combo 3 x 500 g</h3>
+                <p class="card-produto-desc">Três pacotes do Icafé Tradicional para você não ficar sem café.</p>
+                <p class="card-produto-beneficio">Benefício principal: economia e estoque garantido por mais tempo.</p>
+                <p class="preco">R$ 135,00</p>
+                <a class="botao botao-primario" href="#contato">Fazer pedido</a>
+              </div>
+            </article>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Seção GALERIA — <figure> + <figcaption> para cada imagem com legenda.
+         ==================================================================== -->
+    <section class="secao galeria" id="galeria" aria-labelledby="titulo-galeria">
+      <div class="container">
+        <h2 id="titulo-galeria">Galeria</h2>
+        <p class="secao-intro">Um pouco do nosso mundo: da roça à xícara.</p>
+
+        <ul class="grade grade-galeria">
+          <li>
+            <figure class="galeria-item">
+              <img src="img/gal-xicara.svg" alt="Xícara branca de Icafé com creme na superfície e grãos ao lado" width="640" height="480" loading="lazy">
+              <figcaption>O frescor de cada xícara</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="galeria-item">
+              <img src="img/gal-graos.svg" alt="Punhado de grãos de café recém-torrados brilhando" width="640" height="480" loading="lazy">
+              <figcaption>Grãos selecionados e torrados na medida</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="galeria-item">
+              <img src="img/gal-pacotes.svg" alt="Pacotes de café Icafé empilhados no balcão" width="640" height="480" loading="lazy">
+              <figcaption>Do moinho direto para a sua casa</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="galeria-item">
+              <img src="img/gal-fazenda.svg" alt="Pés de café carregados de frutos maduros na fazenda" width="640" height="480" loading="lazy">
+              <figcaption>Nossa roça, seu café</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="galeria-item">
+              <img src="img/gal-coado.svg" alt="Coador de pano com café Icafé sendo passado na garrafa" width="640" height="480" loading="lazy">
+              <figcaption>O ritual do café coado</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="galeria-item">
+              <img src="img/gal-torrefacao.svg" alt="Máquina de torrefação com grãos de café em movimento" width="640" height="480" loading="lazy">
+              <figcaption>Torra artesanal para um sabor único</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Seção SOBRE.
+         ==================================================================== -->
+    <section class="secao sobre" id="sobre" aria-labelledby="titulo-sobre">
+      <div class="container sobre-inner">
+
+        <div class="sobre-texto">
+          <h2 id="titulo-sobre">Sobre o Icafé</h2>
+
+          <h3>O que é</h3>
+          <p>
+            O Icafé é um café torrado e moído de verdade, produzido em pequena
+            escala no campo e vendido com a pureza de quem conhece cada etapa,
+            do plantio ao pacote.
+          </p>
+
+          <h3>Para quem é</h3>
+          <p>
+            É para todo mundo que gosta de café: quem toma para acordar, quem
+            toma depois do almoço, quem aprecia um coado no fim da tarde e
+            também quem quer uma opção sem cafeína.
+          </p>
+
+          <h3>Que problema resolve</h3>
+          <p>
+            Cansado daquele café sem gosto, amargo demais ou cheio de misturas?
+            O Icafé resolve isso com um produto natural, torrado na medida certa
+            e com sabor consistente em todos os pacotes.
+          </p>
+        </div>
+
+        <div class="sobre-diferenciais">
+          <h3>Nossos diferenciais</h3>
+          <!-- <ul> semântico com os diferenciais do produto. -->
+          <ul class="lista-diferenciais">
+            <li><strong>Torrado na medida:</strong> torra artesanal que realça o sabor sem queimar o grão.</li>
+            <li><strong>Gostoso de verdade:</strong> sabor marcante e equilibrado, do jeito que café bom tem que ser.</li>
+            <li><strong>100% natural:</strong> sem aditivos, sem conservantes e sem misturas artificiais.</li>
+            <li><strong>Direto da roça:</strong> você valoriza quem produz e leva frescor para a sua casa.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Seção CHAMADA PARA AÇÃO — destaque antes do contato.
+         ==================================================================== -->
+    <section class="cta" id="cta" aria-labelledby="titulo-cta">
+      <div class="container cta-inner">
+        <h2 id="titulo-cta">Pronto para provar o verdadeiro café da roça?</h2>
+        <p>
+          Peça agora e receba o Icafé fresquinho onde você estiver.
+          Atendemos todo o Brasil com envio protegido e rápido.
+        </p>
+        <p class="cta-acoes">
+          <a class="botao botao-claro" href="#contato">Comprar agora</a>
+          <a class="botao botao-contorno-claro" href="tel:+554799395678">Falar com um especialista</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Seção CONTATO — formulário + informações de contato.
+         ==================================================================== -->
+    <section class="secao contato" id="contato" aria-labelledby="titulo-contato">
+      <div class="container contato-inner">
+
+        <!-- Coluna 1: formulário. -->
+        <div class="contato-formulario">
+          <h2 id="titulo-contato">Fale com a gente</h2>
+          <p class="secao-intro">Tire dúvidas ou faça seu pedido. Respondemos em até 1 dia útil.</p>
+
+          <!-- Sem JavaScript, o navegador valida sozinho os campos marcados
+               com "required" (mostrando mensagens nativas) e exige formato
+               correto em type="email". Para RECEBER as mensagens, adicione o
+               destino no atributo action, ex.:
+               action="https://formspree.io/f/SEU-CODIGO" method="post" -->
+          <form id="formulario-contato" name="formulario-contato">
+            <!-- Aviso sobre os campos obrigatórios. -->
+            <p class="campos-obrigatorios"><span aria-hidden="true">*</span> Campos obrigatórios</p>
+
+            <!-- Nome -->
+            <div class="campo">
+              <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+              <input type="text" id="nome" name="nome" autocomplete="name" required maxlength="80">
+            </div>
+
+            <!-- E-mail -->
+            <div class="campo">
+              <label for="email">E-mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required maxlength="120">
+            </div>
+
+            <!-- Telefone (opcional) -->
+            <div class="campo">
+              <label for="telefone">Telefone <span class="opcional">(opcional)</span></label>
+              <input type="tel" id="telefone" name="telefone" autocomplete="tel" maxlength="20" aria-describedby="dica-telefone">
+              <p class="msg-dica" id="dica-telefone">Ex.: (47) 99999-9999</p>
+            </div>
+
+            <!-- Mensagem -->
+            <div class="campo">
+              <label for="mensagem">Mensagem <span aria-hidden="true">*</span></label>
+              <textarea id="mensagem" name="mensagem" rows="5" required maxlength="1000"></textarea>
+            </div>
+
+            <button class="botao botao-primario botao-enviar" type="submit">Enviar mensagem</button>
+          </form>
+        </div>
+
+        <!-- Coluna 2: informações de contato. -->
+        <div class="contato-info" aria-label="Informações de contato">
+          <h3>Onde falar com a gente</h3>
+
+          <!-- <address> marca informações de contato de forma semântica. -->
+          <address class="dados-contato">
+            <p>
+              E-mail:<br>
+              <a href="mailto:aldecir287@gmail.com">aldecir287@gmail.com</a>
+            </p>
+            <p>
+              Telefone / WhatsApp:<br>
+              <a href="tel:+554799395678">(47) 9939-5678</a>
+            </p>
+            <p>
+              Endereço:<br>
+              Estrada da Roça, 123 — Sítio Boa Vista<br>
+              Interior de Santa Catarina
+            </p>
+          </address>
+
+          <p class="atendimento">
+            <strong>Horário de atendimento:</strong><br>
+            Segunda a sexta, das 8h às 18h.
+          </p>
+
+          <!-- Botão com tamanho adequado para toque (mesmo estilo dos demais). -->
+          <p>
+            <a class="botao botao-secundario" href="https://wa.me/554799395678" rel="noopener">Pedir pelo WhatsApp</a>
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       <footer> — rodapé com marca, contato, redes sociais e links legais.
+       ====================================================================== -->
+  <footer class="rodape">
+    <div class="container rodape-inner">
+
+      <div class="rodape-bloco">
+        <p class="rodape-marca">Icafé</p>
+        <p>Café natural da roça, torrado na medida certa para o seu dia a dia.</p>
+      </div>
+
+      <div class="rodape-bloco">
+        <p class="rodape-titulo">Contato</p>
+        <ul class="rodape-lista">
+          <li><a href="mailto:aldecir287@gmail.com">aldecir287@gmail.com</a></li>
+          <li><a href="tel:+554799395678">(47) 9939-5678</a></li>
+        </ul>
+      </div>
+
+      <div class="rodape-bloco">
+        <nav aria-label="Redes sociais">
+          <p class="rodape-titulo">Siga a gente</p>
+          <ul class="rodape-lista">
+            <!-- Substitua os "#" pelos endereços reais das suas redes. -->
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="rodape-bloco">
+        <nav aria-label="Links do site">
+          <ul class="rodape-lista">
+            <!-- Substitua os "#" pelas páginas reais quando existirem. -->
+            <li><a href="#">Política de privacidade</a></li>
+            <li><a href="#">Termos de uso</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+
+    <!-- Direitos autorais. -->
+    <div class="rodape-base">
+      <div class="container">
+        <p>&copy; 2026 Icafé. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

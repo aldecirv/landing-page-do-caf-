@@ -1,0 +1,785 @@
+/* ============================================================================
+   LANDING PAGE — ICAFÉ
+   styles.css
+   ----------------------------------------------------------------------------
+   Estrutura:
+   1. Variáveis e reset
+   2. Acessibilidade (skip link, foco visível, reduced motion)
+   3. Base e tipografia
+   4. Cabeçalho e navegação
+   5. Hero
+   6. Seções genéricas
+   7. Benefícios
+   8. Produtos (cards)
+   9. Galeria
+   10. Sobre
+   11. Chamada para ação (CTA)
+   12. Contato e formulário
+   13. Rodapé
+   14. Responsividade (media queries)
+   ============================================================================ */
+
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS E RESET
+   -------------------------------------------------------------------------- */
+:root {
+  /* Cores */
+  --fundo:        #fbf7f0;   /* creme principal */
+  --fundo-alt:    #f4ead9;   /* creme mais escuro (faixas) */
+  --fundo-cta:    #3a2312;   /* marrom escuro (CTA) */
+  --cartao:       #fffdf9;   /* cor dos cards */
+  --texto:        #2b2116;   /* texto principal (contraste alto) */
+  --texto-suave:  #5c4a35;   /* texto secundário */
+  --primaria:     #6f3f17;   /* marrom principal (botões) */
+  --primaria-escura: #4f2c0d;
+  --primaria-clara:  #f6e7cd; /* fundo de destaques claros */
+  --borda:        #e0cfb4;
+  --foco:         #0f0f0f;   /* anel de foco (contextos claros) */
+  --foco-claro:   #ffd9a3;   /* anel de foco (contextos escuros) */
+  --branco:       #ffffff;
+
+  /* Tipografia */
+  --fonte-corpo: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --fonte-titulo: Georgia, "Times New Roman", serif;
+
+  /* Espaçamento consistente */
+  --raio: 12px;
+  --espaco: clamp(3rem, 8vw, 5rem);
+}
+
+/* Reset básico mantendo elementos semânticos */
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. ACESSIBILIDADE
+   -------------------------------------------------------------------------- */
+
+/* Link "Pular para o conteúdo principal": fica fora da tela e entra quando
+   recebe o foco (primeiro elemento tabulável). */
+.link-pular {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  background: var(--primaria);
+  color: var(--branco);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-300%);
+  transition: transform 0.2s ease;
+}
+
+.link-pular:focus {
+  transform: translateY(0);
+}
+
+/* Foco visível: usado somente para navegação por teclado. */
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Contextos escuros precisam de anel de foco claro. */
+.cta :focus-visible,
+.rodape :focus-visible {
+  outline-color: var(--foco-claro);
+}
+
+/* Redução de movimento (prefers-reduced-motion). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Rolagem suave apenas para quem não pediu redução de movimento. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Ancôras não ficam escondidas atrás do cabeçalho fixo. */
+[id] {
+  scroll-margin-top: 100px;
+}
+
+/* --------------------------------------------------------------------------
+   3. BASE E TIPOGRAFIA
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+/* Imagens nunca estouram o container nem distorcem por padrão. */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hierarquia de títulos legível e consistente. */
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.25;
+  color: var(--texto);
+}
+
+h1 {
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  max-width: 68ch;
+}
+
+/* Links de texto sempre têm sublinhado para não depender de cor. */
+a {
+  color: var(--primaria);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--primaria-escura);
+}
+
+/* Container centralizador responsivo. */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+/* --------------------------------------------------------------------------
+   4. CABEÇALHO E NAVEGAÇÃO
+   -------------------------------------------------------------------------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251, 247, 240, 0.96);
+  border-bottom: 1px solid var(--borda);
+}
+
+.cabecalho-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.6rem;
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.marca-logo {
+  width: 160px;
+  height: auto;
+}
+
+.navegacao-lista {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navegacao a {
+  display: inline-block;
+  padding: 0.55rem 0.85rem;
+  border-radius: 8px;
+  color: var(--texto);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navegacao a:hover {
+  background: var(--primaria-clara);
+  color: var(--primaria-escura);
+}
+
+/* --------------------------------------------------------------------------
+   5. HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  background: linear-gradient(135deg, #f7ebd6 0%, #fbf4e6 60%, #f2e1c4 100%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  padding-block: clamp(2rem, 6vw, 4.5rem);
+}
+
+.hero-texto h1 {
+  color: var(--primaria-escura);
+}
+
+.hero-descricao {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--texto-suave);
+  margin-bottom: 1.5rem;
+}
+
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-selo {
+  color: var(--primaria);
+  font-weight: 700;
+}
+
+.hero-figura {
+  margin: 0;
+}
+
+.hero-figura img {
+  width: 100%;
+  border-radius: var(--raio);
+  box-shadow: 0 12px 30px rgba(58, 35, 18, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   6. SEÇÕES GENÉRICAS + BOTÕES
+   -------------------------------------------------------------------------- */
+.secao {
+  padding-block: var(--espaco);
+}
+
+.secao-intro {
+  color: var(--texto-suave);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+/* Botões: base grande o suficiente para toque (mín. 44 px). */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Botão primário (preenchido). */
+.botao-primario {
+  background: var(--primaria);
+  color: var(--branco);
+}
+
+.botao-primario:hover {
+  background: var(--primaria-escura);
+  color: var(--branco);
+}
+
+/* Botão secundário (contorno). */
+.botao-secundario {
+  background: transparent;
+  border-color: var(--primaria);
+  color: var(--primaria);
+}
+
+.botao-secundario:hover {
+  background: var(--primaria);
+  color: var(--branco);
+}
+
+/* Variantes para o fundo escuro do CTA. */
+.botao-claro {
+  background: var(--branco);
+  color: var(--primaria-escura);
+}
+
+.botao-claro:hover {
+  background: var(--primaria-clara);
+  color: var(--primaria-escura);
+}
+
+.botao-contorno-claro {
+  background: transparent;
+  border-color: var(--branco);
+  color: var(--branco);
+}
+
+.botao-contorno-claro:hover {
+  background: var(--branco);
+  color: var(--primaria-escura);
+}
+
+/* Grades semânticas (listas de cards). */
+.grade {
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. BENEFÍCIOS
+   -------------------------------------------------------------------------- */
+.beneficios {
+  background: var(--fundo);
+}
+
+.beneficios-grade {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.beneficio-item {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+}
+
+.beneficio-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background: var(--primaria-clara);
+  color: var(--primaria);
+  font-size: 1.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. PRODUTOS (6 CARDS)
+   -------------------------------------------------------------------------- */
+.produtos {
+  background: var(--fundo-alt);
+}
+
+/* Grade dos produtos: 1 coluna (celular) -> 2 (tablet) -> 3 (desktop).
+   Os breakpoints ficam em "14. Responsividade". */
+.grade-produtos {
+  grid-template-columns: 1fr;
+}
+
+.card-produto {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+
+.card-produto img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.card-produto-corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.card-produto-desc {
+  color: var(--texto);
+}
+
+.card-produto-beneficio {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* Preço em destaque, editável aqui. */
+.preco {
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primaria);
+  margin-top: 0.25rem;
+}
+
+/* Botão do card sempre colado embaixo. */
+.card-produto .botao {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   9. GALERIA
+   -------------------------------------------------------------------------- */
+.galeria {
+  background: var(--fundo);
+}
+
+.grade-galeria {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.galeria-item {
+  margin: 0;
+}
+
+.galeria-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--raio) var(--raio) 0 0;
+}
+
+.galeria-item figcaption {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-top: 0;
+  border-radius: 0 0 var(--raio) var(--raio);
+  padding: 0.75rem 1rem;
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   10. SOBRE
+   -------------------------------------------------------------------------- */
+.sobre {
+  background: var(--branco);
+}
+
+.sobre-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.sobre-texto p,
+.sobre-diferenciais p {
+  margin-bottom: 1rem;
+}
+
+.lista-diferenciais {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sobre-diferenciais {
+  background: var(--fundo-alt);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. CHAMADA PARA AÇÃO (CTA)
+   -------------------------------------------------------------------------- */
+.cta {
+  background: linear-gradient(135deg, #4a2a10 0%, #2f1a08 100%);
+  color: var(--branco);
+  text-align: center;
+  padding-block: clamp(3rem, 8vw, 5rem);
+}
+
+.cta h2 {
+  color: var(--branco);
+}
+
+.cta p {
+  margin-inline: auto;
+}
+
+.cta-inner > p {
+  margin-bottom: 1.5rem;
+}
+
+.cta-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   12. CONTATO E FORMULÁRIO
+   -------------------------------------------------------------------------- */
+.contato-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.contato-formulario form {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-top: 1rem;
+}
+
+.campos-obrigatorios {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.campo {
+  margin-bottom: 1.1rem;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.opcional {
+  font-weight: 400;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 2px solid #b7a184;
+  border-radius: 8px;
+  background: var(--branco);
+  color: var(--texto);
+  font: inherit;
+}
+
+/* Foco visível também para clique com mouse (campos de formulário). */
+.campo input:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--primaria);
+  box-shadow: 0 0 0 4px rgba(111, 63, 23, 0.2);
+}
+
+/* Dica de preenchimento abaixo do campo (ex.: formato do telefone). */
+.msg-dica {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.botao-enviar {
+  min-width: 200px;
+}
+
+/* Coluna de informações de contato. */
+.dados-contato {
+  font-style: normal;
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.dados-contato p {
+  line-height: 1.7;
+}
+
+.atendimento {
+  color: var(--texto-suave);
+  margin-bottom: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   13. RODAPÉ
+   -------------------------------------------------------------------------- */
+.rodape {
+  background: #241407;
+  color: #f0dfc6;
+  padding-top: 3rem;
+}
+
+.rodape-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.rodape-marca {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 0.5rem;
+}
+
+.rodape-titulo {
+  color: var(--branco);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.rodape-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.rodape a {
+  color: #f0dfc6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rodape a:hover {
+  color: var(--branco);
+}
+
+.rodape-base {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  margin-top: 2.5rem;
+  padding-block: 1.1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   14. RESPONSIVIDADE
+   -------------------------------------------------------------------------- */
+
+/* Tablet médio / celulares grandes: hero vira uma coluna. */
+@media (max-width: 920px) {
+  /* No celular o cabeçalho quebra em duas linhas e o menu de navegação
+     fica empilhado em uma coluna — tudo apenas com CSS. */
+  .cabecalho-inner {
+    flex-wrap: wrap;
+  }
+
+  /* Menu vertical abaixo da marca no celular. */
+  .navegacao {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .navegacao-lista {
+    flex-direction: column;
+    gap: 0.1rem;
+    width: 100%;
+  }
+
+  .navegacao a {
+    display: block;
+    width: 100%;
+    padding-block: 0.8rem;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-figura {
+    order: -1; /* imagem primeiro no celular */
+  }
+}
+
+/* Produtos: 2 colunas em telas médias. */
+@media (min-width: 640px) {
+  .grade-produtos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sobre-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .contato-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* Produtos: 3 colunas no desktop. */
+@media (min-width: 1000px) {
+  .grade-produtos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Rodapé: 4 colunas no desktop. */
+@media (min-width: 960px) {
+  .rodape-inner {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+
+/* Telas muito pequenas: ajustes finos para o layout não quebrar. */
+@media (max-width: 360px) {
+  .hero-acoes,
+  .cta-acoes {
+    flex-direction: column;
+  }
+
+  .hero-acoes .botao,
+  .cta-acoes .botao {
+    width: 100%;
+  }
+}
