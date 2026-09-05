@@ -1,0 +1,12 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+version: 1
+site:
+  title: Icafé — Landing Page
+  structure:
+    - type: space
+      key: space-landing-icafe
+      title: Icafé — Landing Page
+      path: icafe-landing
+      default: true
+      content:
+        directory: /
